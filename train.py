@@ -30,10 +30,10 @@ parser.add_argument('-save_freq', default=10, type=int, help='save freq of visua
 args = parser.parse_args()
 
 
-train_dir = './img_data/train/'
-save_dir = './save_model/'
-result_dir = './result/'
-HEADS = ['A', 'B', 'C']
+train_dir = '/content/typhoon-baseline/img_data/train/'
+save_dir = '/content/typhoon-baseline/save_model/'
+result_dir = '/content/typhoon-baseline/result/'
+HEADS = ['A']#, 'B', 'C']
 
 log_format = '%(asctime)s %(message)s'
 logging.basicConfig(stream=sys.stdout, level=logging.INFO,
