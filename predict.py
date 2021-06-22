@@ -22,9 +22,9 @@ parser.add_argument('--clip_size', default=184, type=int, help='clipped image si
 args = parser.parse_args()
 
 
-test_dir = './img_data/test/'
-save_dir = './save_model/'
-result_dir = './result/final/'
+test_dir = '/content/typhoon-baseline/img_data/test/'
+save_dir = '/content/typhoon-baseline/save_model/'
+result_dir = '/content/typhoon-baseline/result/final/'
 HEADS = ['U', 'V', 'W', 'X', 'Y', 'Z']
 
 model = Network(in_channels=3, out_channels=3).cuda()
@@ -71,10 +71,10 @@ for head in HEADS:
         output_img = cv.resize(output_img, (1999, 1999), interpolation=cv.INTER_CUBIC)
         # scipy.misc.toimage(output_img*255, high=255, low=0, cmin=0, cmax=255).save(os.path.join(result_dir, head + '_Hour_' + str(pre_tid) + '.jpg'))
 
-        img_np = np.array(output_img * 4095.0, dtype=np.uint16)
-        output_ban08 = img_np[:, :, 0]
-        output_ban09 = img_np[:, :, 1]
-        output_ban10 = img_np[:, :, 2]
+        img_np = np.array(output_img, dtype=np.uint16)
+        output_ban08 = img_np[:, :, 0] * 16383.0
+        output_ban09 = img_np[:, :, 1] * 2047.0
+        output_ban10 = img_np[:, :, 2] * 2047.0
 
         np.save(os.path.join(result_dir, head + '_Hour_' + str(pre_tid) + '_Band_08.npy'), output_ban08)
         np.save(os.path.join(result_dir, head + '_Hour_' + str(pre_tid) + '_Band_09.npy'), output_ban09)
