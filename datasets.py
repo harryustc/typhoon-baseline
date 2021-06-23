@@ -53,28 +53,28 @@ class loadedDataset(Dataset):
 		return ids, frames_crop
 
 	def _get_patch(self, imgs):
-		H = imgs[0].shape[1]
-		W = imgs[0].shape[2]
+# 		H = imgs[0].shape[1]
+# 		W = imgs[0].shape[2]
 
-		if self.ps < W and self.ps < H:
-			xx = np.random.randint(0, W-self.ps)
-			yy = np.random.randint(0, H-self.ps)
+# 		if self.ps < W and self.ps < H:
+# 			xx = np.random.randint(0, W-self.ps)
+# 			yy = np.random.randint(0, H-self.ps)
 		
-			imgs_crop = []
-			for img in imgs:
-				img_crop = img[:, yy:yy+self.ps, xx:xx+self.ps]
-				imgs_crop.append(img_crop)
-		else:
-			imgs_crop = imgs
+# 			imgs_crop = []
+# 			for img in imgs:
+# 				img_crop = img[:, yy:yy+self.ps, xx:xx+self.ps]
+# 				imgs_crop.append(img_crop)
+# 		else:
+# 			imgs_crop = imgs
 
-		if np.random.randint(2, size=1)[0] == 1:
-			for i in range(len(imgs_crop)):
-				imgs_crop[i] = np.flip(imgs_crop[i], axis=2).copy()
-		if np.random.randint(2, size=1)[0] == 1: 
-			for i in range(len(imgs_crop)):
-				imgs_crop[i] = np.flip(imgs_crop[i], axis=1).copy()
-		if np.random.randint(2, size=1)[0] == 1:
-			for i in range(len(imgs_crop)):
-				imgs_crop[i] = np.transpose(imgs_crop[i], (0, 2, 1)).copy()
-		
-		return imgs_crop
+# 		if np.random.randint(2, size=1)[0] == 1:
+# 			for i in range(len(imgs_crop)):
+# 				imgs_crop[i] = np.flip(imgs_crop[i], axis=2).copy()
+# 		if np.random.randint(2, size=1)[0] == 1: 
+# 			for i in range(len(imgs_crop)):
+# 				imgs_crop[i] = np.flip(imgs_crop[i], axis=1).copy()
+# 		if np.random.randint(2, size=1)[0] == 1:
+# 			for i in range(len(imgs_crop)):
+# 				imgs_crop[i] = np.transpose(imgs_crop[i], (0, 2, 1)).copy()
+
+		return imgs#_crop
